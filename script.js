@@ -6,7 +6,7 @@ const diagramArray = [...diagram];
 
 /* ========== Functions ========== */
 const showAmount = (item, action) => {
-	const amount = item.firstElementChild;
+	const amount = item.firstElementChild.firstElementChild;
 
 	if (action === 'show') {
 		amount.style.opacity = '1';
@@ -16,20 +16,26 @@ const showAmount = (item, action) => {
 	}
 };
 
-const loadColumn = (columnHeight, columnName, columnAmount) => {
+const loadColumns = (columnHeight, columnName, columnAmount, maxAmount) => {
 	const columns = document.querySelectorAll('.body__graph-col');
 	const columnsArray = [...columns];
 
 	columnsArray.forEach(item => {
 		const columnDay = item.querySelector('.body__graph-day');
 
+		// draw column
 		if (columnDay.innerHTML === columnName) {
 			const columnDiagram = item.querySelector('.body__graph-diagram');
 			const columnStat = item.querySelector('.body__graph-stat');
 
 			columnDiagram.style.height = columnHeight + '%';
 			columnStat.innerHTML = '$' + columnAmount;
-		}
+
+			// paint highest column
+			if (columnAmount === maxAmount) {
+				columnDiagram.classList.add('body__graph-diagram--highest');
+			}
+		}		
 	});
 };
 
@@ -46,17 +52,20 @@ window.addEventListener('load', () => {
 		const columnName = item.day;
 		const columnAmount = item.amount;
 
-		loadColumn(columnHeight, columnName, columnAmount);
+		loadColumns(columnHeight, columnName, columnAmount, maxAmount);
 	});
 });
 
 // show stat when hovering over the diagram
 diagramArray.forEach(item => {
-	item.addEventListener('mouseover', () => {
+	const disgram = item.firstElementChild;
+	disgram.addEventListener('mouseover', () => {
 		showAmount(item, 'show');
 	});
 
-	item.addEventListener('mouseout', () => {
+	disgram.addEventListener('mouseout', () => {
 		showAmount(item, 'hide');
 	});
 });
+
+console.log(diagramArray[0].firstElementChild);

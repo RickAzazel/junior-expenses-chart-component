@@ -20,6 +20,7 @@
 	--body-graph-diagram-bg-color: rgb(236, 119, 95);
 	--body-graph-diagram-bg-color--hover: rgba(236, 119, 95, 0.706);
 	--body-graph-diagram-bg-color--highest: rgb(118, 181, 188);
+	--body-graph-diagram-bg-color--highest--hover: rgba(118, 181, 188, 0.702);
 
 	/* Font */
 	--header-font-color: rgb(255, 250, 245);
@@ -67,7 +68,7 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
-	height: 650px;
+	height: 700px;
 }
 
 /** ================ Header =================== */
@@ -108,8 +109,8 @@ body {
 .body__graph-inner {
 	display: flex;
 	justify-content: space-between;
-	height: 260px;
-	padding: 15px 0 30px 0;
+	height: 300px;
+	padding: 70px 0 30px 0;
 	border-bottom: 1px solid var(--body-graph-border-color);
 }
 
@@ -120,8 +121,19 @@ body {
 	width: 55px;
 }
 
+.body__graph-link {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	cursor: unset;
+}
+
 .body__graph-stat {
-	position: relative;
+	position: absolute;
+	top: -49px;
 	left: -10px;
 	width: 75px;
 	border-radius: 5px;
@@ -134,25 +146,25 @@ body {
 	transition: all .5s;
 }
 
-.body__graph-link {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-}
-
 .body__graph-diagram {
+	position: relative;
 	width: 100%;
 	border-radius: 5px;
 	background-color: var(--body-graph-diagram-bg-color);
+	cursor: pointer;
 	transition: all .5s;
-
 }
 
 .body__graph-diagram:hover {
 	background-color: var(--body-graph-diagram-bg-color--hover);
+}
+
+.body__graph-diagram--highest {
+	background-color: var(--body-graph-diagram-bg-color--highest);
+}
+
+.body__graph-diagram--highest:hover {
+	background-color: var(--body-graph-diagram-bg-color--highest--hover);
 }
 
 .body__graph-day {
@@ -197,6 +209,10 @@ body {
 		font-size: 45%;
 	}
 
+	.chart-component {
+		height: 650px;
+	}
+
 	.header__inner {
 		padding: 30px;
 		border-radius: 15px;
@@ -217,6 +233,7 @@ body {
 
 	.body__graph-stat {
 		width: 50px;
+		top: -41px;
 		left: -5px;
 		padding-left: 3px;
 	}
@@ -231,7 +248,7 @@ body {
 
 	.chart-component {
 		height: 100%;
-		max-height: 520px;
+		max-height: 510px;
 	}
 
 	.header__inner {
@@ -253,7 +270,7 @@ body {
 	}
 
 	.body__graph-inner {
-		padding-top: 20px;
+		padding-top: 50px;
 		padding-bottom: 25px;
 		height: 250px;
 	}
@@ -263,9 +280,10 @@ body {
 	}
 
 	.body__graph-stat {
+		top: -30px;
 		left: -3px;
 		width: 39px;
-		padding: 5px 0 5px 2px;
+		padding: 5px 0 5px 4px;
 		font-size: 1.4rem;
 	}
 
@@ -300,7 +318,9 @@ body {
 	}
 
 	.body__graph-stat {
+		top: -23px;
 		width: 28px;
 		font-size: 1.1rem;
+		padding-left: 3px;
 	}
 }
