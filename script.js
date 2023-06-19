@@ -1,8 +1,7 @@
 import graphData from './data.json' assert {type: 'json'};
 
 /* ========== Variables ========== */
-const diagram = document.querySelectorAll('.body__graph-link');
-const diagramArray = [...diagram];
+const diagramArray = [...document.querySelectorAll('.body__graph-link')];
 
 /* ========== Functions ========== */
 const showAmount = (item, action) => {
@@ -20,7 +19,7 @@ const loadColumns = (columnHeight, columnName, columnAmount, maxAmount) => {
 	const columns = document.querySelectorAll('.body__graph-col');
 	const columnsArray = [...columns];
 
-	columnsArray.forEach(item => {
+	columnsArray.forEach((item) => {
 		const columnDay = item.querySelector('.body__graph-day');
 
 		// draw column
@@ -42,12 +41,12 @@ const loadColumns = (columnHeight, columnName, columnAmount, maxAmount) => {
 /* ========== Events ========== */
 // load diagram and stat
 window.addEventListener('load', () => {
-	const arrayOfAmounts = graphData.map(item => item.amount);
+	const arrayOfAmounts = graphData.map((item) => item.amount);
 	const maxAmount = arrayOfAmounts
 		.reduce((accumulator, currentValue) => Math.max(accumulator, currentValue), 0);
 	const heightCoefficient = maxAmount / 100;
 
-	graphData.forEach(item => {
+	graphData.forEach((item) => {
 		const columnHeight = item.amount / heightCoefficient;
 		const columnName = item.day;
 		const columnAmount = item.amount;
@@ -57,15 +56,14 @@ window.addEventListener('load', () => {
 });
 
 // show stat when hovering over the diagram
-diagramArray.forEach(item => {
-	const disgram = item.firstElementChild;
-	disgram.addEventListener('mouseover', () => {
+diagramArray.forEach((item) => {
+	const diagram = item.firstElementChild;
+
+	diagram.addEventListener('mouseover', () => {
 		showAmount(item, 'show');
 	});
 
-	disgram.addEventListener('mouseout', () => {
+	diagram.addEventListener('mouseout', () => {
 		showAmount(item, 'hide');
 	});
 });
-
-console.log(diagramArray[0].firstElementChild);
